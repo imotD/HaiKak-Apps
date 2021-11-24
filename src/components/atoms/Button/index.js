@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
-export default function Button({ type, title }) {
+export default function Button({ type, title, onPress }) {
   return (
-    <View style={styles.container(type)}>
+    <TouchableOpacity style={styles.container(type)} onPress={onPress}>
       <Text style={styles.text(type)}>
         {title}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 
