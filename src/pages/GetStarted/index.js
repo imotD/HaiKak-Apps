@@ -2,7 +2,7 @@ import { Color } from "chalk";
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { ILGetStarted, ILLogo } from "../../assets/illustration";
-import { Button } from "../../components";
+import { Button, Gap } from "../../components";
 
 export default function GetStarted() {
   return (
@@ -10,12 +10,12 @@ export default function GetStarted() {
       <View>
         <ILLogo />
         <Text style={styles.title}>
-          Konsultasi dengan Apoteker jadi lebih mudah & Flexsibel
+          Konsultasi dengan Dokter jadi lebih mudah & Flexsibel.
         </Text>
       </View>
       <View>
         <Button title="Get Started" />
-        <View style={{ height: 16  }} />
+        <Gap height={16} />
         <Button type="secondary" title="Sign In" />
       </View>
     </ImageBackground>
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: "600",
     marginTop: 91,
-    color: "white"
+    color: "white",
+    fontFamily: "Nunito-SemiBold"
   }
 });
