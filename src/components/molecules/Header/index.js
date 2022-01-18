@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { colors } from "../../../utils";
+import { colors, fonts } from "../../../utils";
 import { Button, Gap } from "../../atoms";
 
 export default function Header({ title, onPress }) {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     fontSize: 20,
-    fontFamily: "Nuninto-SemiBold",
+    fontFamily: fonts.primary[600],
     color: colors.text.primary,
     flex: 1
   }
