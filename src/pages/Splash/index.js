@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ILLogo } from "../../assets/illustration";
 
@@ -25,7 +24,8 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "white"
   },
   title: {
     fontSize: 20,

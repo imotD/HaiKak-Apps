@@ -1,4 +1,3 @@
-import { Color } from "chalk";
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { ILGetStarted, ILLogo } from "../../assets/illustration";
