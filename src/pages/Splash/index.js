@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ILLogo } from "../../assets/illustration";
-import { fonts } from "../../utils";
-import { colors } from "../../utils/colors";
+import { colors, fonts } from "../../utils";
 
 export default function Splash({ navigation }) {
   useEffect(

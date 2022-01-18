@@ -18,14 +18,14 @@ export default function Header({ title, onPress }) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    paddingVertical: 30,
+    paddingVertical: 16,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.white
   },
   title: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
     flex: 1
