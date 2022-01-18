@@ -1,13 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { IconBackDark } from "../../../assets";
 import { colors } from "../../../utils";
-import { Gap } from "../../atoms";
+import { Button, Gap } from "../../atoms";
 
-export default function Header({ title }) {
+export default function Header({ title, onPress }) {
   return (
     <View style={styles.container}>
-      <IconBackDark />
+      <Button type="icon-only" icon="back-dark" onPress={onPress} />
       <Text style={styles.title}>
         {title}
       </Text>
