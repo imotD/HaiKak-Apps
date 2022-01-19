@@ -11,23 +11,36 @@ import {
   Hospitals
 } from "../pages";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomNavigator } from "../components";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const MainApp = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Doctor" component={Doctor} />
-      <Tab.Screen name="Messages" component={Messages} />
-      <Tab.Screen name="Hospitals" component={Hospitals} />
+    <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
+      <Tab.Screen
+        name="Doctor"
+        component={Doctor}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Messages"
+        component={Messages}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Hospitals"
+        component={Hospitals}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };
 
 export default function Router() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={Splash}
