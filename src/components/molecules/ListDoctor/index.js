@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { DummyDoctor2 } from "../../../assets";
-import { colors } from "../../../utils";
+import { colors, fonts } from "../../../utils";
 
 export default function ListDoctor() {
   return (

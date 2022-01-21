@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ListDoctor from "../../components/molecules/ListDoctor";
-import { colors } from "../../utils";
+import { colors, fonts } from "../../utils";
 
 export default function Messages() {
   return (
