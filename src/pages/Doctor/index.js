@@ -8,6 +8,7 @@ import {
   RatedDoctor
 } from "../../components";
 import { colors, fonts } from "../../utils";
+import { JSONCategoryDoctor, JSONTopDoctor } from "../../assets";
 
 export default function Doctor() {
   return (
@@ -25,19 +26,26 @@ export default function Doctor() {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.category}>
                 <Gap width={16} />
-                <DoctorCategory />
-                <DoctorCategory />
-                <DoctorCategory />
-                <DoctorCategory />
+                {JSONCategoryDoctor.data.map(item => {
+                  return (
+                    <DoctorCategory key={item.id} category={item.category} />
+                  );
+                })}
                 <Gap width={6} />
               </View>
             </ScrollView>
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Top Rated Doctors</Text>
-            <RatedDoctor />
-            <RatedDoctor />
-            <RatedDoctor />
+            {JSONTopDoctor.data.map(item => {
+              return (
+                <RatedDoctor
+                  key={item.id}
+                  name={item.name}
+                  category={item.category}
+                />
+              );
+            })}
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Good News</Text>

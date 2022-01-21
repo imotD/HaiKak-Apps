@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Siska Mulyaningsih",
+      "category": "Apoteker"
+    },
+    {
+      "id": 2,
+      "name": "Lola Tosianda",
+      "category": "Ahli Gizi"
+    },
+    {
+      "id": 3,
+      "name": "Anissa Salsabilla",
+      "category": "Psikiater"
+    }
+  ]
+}

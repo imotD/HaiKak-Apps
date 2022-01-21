@@ -1,15 +1,30 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { ILCatUmum } from "../../../assets";
+import { ILCatObat, ILCatPsikiater, ILCatUmum } from "../../../assets";
 import { colors, fonts } from "../../../utils";
 
-export default function DoctorCategory() {
+export default function DoctorCategory({ category }) {
+  const Icon = () => {
+    if (category === "dokter umum") {
+      return <ILCatUmum style={styles.ilustration} />;
+    }
+    if (category === "psikiater") {
+      return <ILCatPsikiater style={styles.ilustration} />;
+    }
+    if (category === "dokter obat") {
+      return <ILCatObat style={styles.ilustration} />;
+    }
+    return <ILCatUmum style={styles.ilustration} />;
+  };
+
   return (
     <View style={styles.container}>
-      <ILCatUmum style={styles.ilustration} />
+      <Icon />
       <View>
         <Text style={styles.label}>Saya butuh</Text>
-        <Text style={styles.category}>dokter umum</Text>
+        <Text style={styles.category}>
+          {category}
+        </Text>
       </View>
     </View>
   );

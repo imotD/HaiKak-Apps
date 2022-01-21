@@ -3,13 +3,17 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { DummyDoctor1, IconStar } from "../../../assets";
 import { colors, fonts } from "../../../utils";
 
-export default function RatedDoctor() {
+export default function RatedDoctor({ name, category }) {
   return (
     <View style={styles.container}>
       <Image source={DummyDoctor1} style={styles.avatar} />
       <View style={styles.profile}>
-        <Text style={styles.name}>Alexa Rachel</Text>
-        <Text style={styles.category}>Pediatrician</Text>
+        <Text style={styles.name}>
+          {name}
+        </Text>
+        <Text style={styles.category}>
+          {category}
+        </Text>
       </View>
       <View style={styles.rate}>
         <IconStar />
