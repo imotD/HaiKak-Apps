@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Gap, Input } from "../../components/atoms";
 import { Header } from "../../components/molecules";
-import { colors } from "../../utils";
+import { colors, useForm } from "../../utils";
 
 export default function Register({ navigation }) {
-  const [fullName, setFullName] = useState("");
-  const [profession, setProfession] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useForm({
+    fullName: "",
+    profession: "",
+    email: "",
+    password: ""
+  });
 
   const onContinue = () => {
     // () => navigation.navigate("UploadPhoto")
-    console.log(fullName, profession, email, password);
+    console.log(form);
   };
 
   return (
@@ -22,27 +24,27 @@ export default function Register({ navigation }) {
         <ScrollView showsVerticalScrollIndicator={false}>
           <Input
             label="Full Name"
-            value={fullName}
-            onChangeText={value => setFullName(value)}
+            value={form.fullName}
+            onChangeText={value => setForm("fullName", value)}
           />
           <Gap height={24} />
           <Input
             label="Job"
-            value={profession}
-            onChangeText={value => setProfession(value)}
+            value={form.profession}
+            onChangeText={value => setForm("profession", value)}
           />
           <Gap height={24} />
           <Input
             label="Email Address"
-            value={email}
-            onChangeText={value => setEmail(value)}
+            value={form.email}
+            onChangeText={value => setForm("email", value)}
           />
           <Gap height={24} />
           <Input
             label="Password"
             secureTextEntry
-            value={password}
-            onChangeText={value => setPassword(value)}
+            value={form.password}
+            onChangeText={value => setForm("password", value)}
           />
           <Gap height={40} />
           <Button title="Continue" onPress={onContinue} />
