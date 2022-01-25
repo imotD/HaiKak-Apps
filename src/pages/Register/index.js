@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Gap, Input } from "../../components/atoms";
-import { Header } from "../../components/molecules";
+import { Header, Loading } from "../../components/molecules";
 import { Fire } from "../../config";
 import { colors, useForm } from "../../utils";
 
@@ -13,19 +13,26 @@ export default function Register({ navigation }) {
     password: ""
   });
 
+  const [loading,setLoading] = useState(false)
+
   const onContinue = () => {
+    setLoading(true)
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
+        setLoading(false)
+        setForm('reset')
         console.log("success", success);
       })
       .catch(error => {
+        setLoading(false)
         var errorMessage = error.message;
         console.log("errorMessage", errorMessage);
       });
   };
 
   return (
+   <>
     <View style={styles.page}>
       <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
       <View style={styles.content}>
@@ -59,6 +66,8 @@ export default function Register({ navigation }) {
         </ScrollView>
       </View>
     </View>
+    {loading && <Loading/>}
+   </>
   );
 }
 
