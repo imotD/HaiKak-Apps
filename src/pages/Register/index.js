@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Gap, Input } from "../../components/atoms";
 import { Header } from "../../components/molecules";
+import { Fire } from "../../config";
 import { colors, useForm } from "../../utils";
 
 export default function Register({ navigation }) {
@@ -13,8 +14,15 @@ export default function Register({ navigation }) {
   });
 
   const onContinue = () => {
-    // () => navigation.navigate("UploadPhoto")
-    console.log(form);
+    Fire.auth()
+      .createUserWithEmailAndPassword(form.email, form.password)
+      .then(success => {
+        console.log("success", success);
+      })
+      .catch(error => {
+        var errorMessage = error.message;
+        console.log("errorMessage", errorMessage);
+      });
   };
 
   return (
