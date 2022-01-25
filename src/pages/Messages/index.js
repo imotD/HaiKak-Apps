@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { DummyDoctor2, JSONListDoctor } from "../../assets";
 import ListDoctor from "../../components/molecules/ListDoctor";
 import { colors, fonts } from "../../utils";
 
@@ -8,9 +9,16 @@ export default function Messages() {
     <View style={styles.page}>
       <View style={styles.content}>
         <Text style={styles.title}>Messages</Text>
-        <ListDoctor />
-        <ListDoctor />
-        <ListDoctor />
+        {JSONListDoctor.data.map(item => {
+          return (
+            <ListDoctor
+              key={item.id}
+              profile={DummyDoctor2}
+              name={item.name}
+              desc={item.desc}
+            />
+          );
+        })}
       </View>
     </View>
   );

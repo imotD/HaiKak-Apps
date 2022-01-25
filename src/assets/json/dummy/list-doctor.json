@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Siska Mulyaningsih",
+      "profile": "dummyDoctor3",
+      "desc": "lorem blalababalballabla"
+    },
+    {
+      "id": 2,
+      "name": "Lola Tosianda",
+      "profile": "dummyDoctor3",
+      "desc": "lorem blalababalballabla"
+    },
+    {
+      "id": 3,
+      "name": "Anissa Salsabilla",
+      "profile": "dummyDoctor3",
+      "desc": "lorem blalababalballabla"
+    }
+  ]
+}

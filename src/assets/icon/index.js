@@ -8,6 +8,8 @@ import IconFaceActive from "./ic-face-active.svg";
 import IconMapActive from "./ic-map-active.svg";
 import IconChatActive from "./ic-chat-active.svg";
 import IconStar from "./ic-star.svg";
+import IconBackLight from "./ic-back-light.svg";
+import IconNext from "./ic-nav-right.svg";
 
 export {
   IconBackDark,
@@ -19,5 +21,7 @@ export {
   IconFaceActive,
   IconMapActive,
   IconChatActive,
-  IconStar
+  IconStar,
+  IconNext,
+  IconBackLight
 };

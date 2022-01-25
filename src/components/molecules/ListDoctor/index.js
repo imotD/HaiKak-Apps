@@ -1,18 +1,21 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { DummyDoctor2 } from "../../../assets";
+import { IconNext } from "../../../assets";
 import { colors, fonts } from "../../../utils";
 
-export default function ListDoctor() {
+export default function ListDoctor({ name, desc, profile, type }) {
   return (
     <View style={styles.container}>
-      <Image style={styles.avatar} source={DummyDoctor2} />
-      <View>
-        <Text style={styles.name}>Alexander Jannie</Text>
+      <Image style={styles.avatar} source={profile} />
+      <View style={styles.content}>
+        <Text style={styles.name}>
+          {name}
+        </Text>
         <Text style={styles.desc}>
-          Baik ibu, terima kasih banyak atas wakt...
+          {desc}
         </Text>
       </View>
+      {type === "next" && <IconNext />}
     </View>
   );
 }
@@ -23,7 +26,11 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  content: {
+    flex: 1
   },
   avatar: {
     width: 46,

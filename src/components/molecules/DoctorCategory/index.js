@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ILCatObat, ILCatPsikiater, ILCatUmum } from "../../../assets";
 import { colors, fonts } from "../../../utils";
 
-export default function DoctorCategory({ category }) {
+export default function DoctorCategory({ category, onPress }) {
   const Icon = () => {
     if (category === "dokter umum") {
       return <ILCatUmum style={styles.ilustration} />;
@@ -18,7 +18,7 @@ export default function DoctorCategory({ category }) {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Icon />
       <View>
         <Text style={styles.label}>Saya butuh</Text>
@@ -26,7 +26,7 @@ export default function DoctorCategory({ category }) {
           {category}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
