@@ -7,6 +7,8 @@ import NewsItem from "./NewsItem";
 import ListDoctor from "./ListDoctor";
 import ListHospital from "./ListHospital";
 import Loading from "./Loading";
+import ChatItem from "./ChatItem";
+import ChatInput from "./ChatInput";
 
 export {
   Header,
@@ -17,5 +19,7 @@ export {
   NewsItem,
   ListDoctor,
   ListHospital,
-  Loading
+  Loading,
+  ChatItem,
+  ChatInput
 };

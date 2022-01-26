@@ -17,6 +17,7 @@ export default function ChooseDoctor({ navigation }) {
           <ListDoctor
             key={item.id}
             type="next"
+            onPress={() => navigation.navigate("Chatting")}
             profile={DummyDoctor2}
             name={item.name}
             desc={item.desc}

@@ -2,8 +2,14 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { colors, fonts } from "../../../utils";
 import { Button, Gap } from "../../atoms";
+import DarkProfile from "./DarkProfile";
 
-export default function Header({ title, onPress, type }) {
+export default function Header({ title, onPress, type, desc }) {
+  if (type === "dark-profile") {
+    return (
+      <DarkProfile title={title} desc={desc} onPress={onPress} type={type} />
+    );
+  }
   return (
     <View style={styles.container(type)}>
       <Button
@@ -26,8 +32,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: type === "dark" ? colors.secondary : colors.white,
-    borderBottomLeftRadius: type === "dark" ? 10 : 0,
-    borderBottomRightRadius: type === "dark" ? 10 : 0
+    borderBottomLeftRadius: type === "dark" ? 20 : 0,
+    borderBottomRightRadius: type === "dark" ? 20 : 0
   }),
   title: type => ({
     textAlign: "center",
