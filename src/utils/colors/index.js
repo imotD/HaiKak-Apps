@@ -23,6 +23,7 @@ export const colors = {
   error: mainColors.red1,
   white: "white",
   black: "black",
+  disable: mainColors.grey3,
 
   text: {
     primary: mainColors.dark1,

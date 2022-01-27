@@ -10,6 +10,8 @@ import IconChatActive from "./ic-chat-active.svg";
 import IconStar from "./ic-star.svg";
 import IconBackLight from "./ic-back-light.svg";
 import IconNext from "./ic-nav-right.svg";
+import IconSendGrey from "./ic-send-grey.svg";
+import IconSendWhite from "./ic-send-white.svg";
 
 export {
   IconBackDark,
@@ -23,5 +25,7 @@ export {
   IconChatActive,
   IconStar,
   IconNext,
-  IconBackLight
+  IconBackLight,
+  IconSendGrey,
+  IconSendWhite
 };
