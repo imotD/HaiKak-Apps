@@ -11,7 +11,8 @@ import {
   Hospitals,
   ChooseDoctor,
   Chatting,
-  UserProfile
+  UserProfile,
+  UpdateProfile
 } from "../pages";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { BottomNavigator } from "../components";
@@ -87,6 +88,11 @@ export default function Router() {
       <Stack.Screen
         name="UserProfile"
         component={UserProfile}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="UpdateProfile"
+        component={UpdateProfile}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

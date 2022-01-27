@@ -15,6 +15,7 @@ export default function UserProfile({ navigation }) {
         name="Edit Profile"
         desc="Last updated yesterday"
         type="next"
+        onPress={() => navigation.navigate("UpdateProfile")}
       />
       <List
         icon="language"
