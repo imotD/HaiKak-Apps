@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { DummyDoctor2, JSONListDoctor } from "../../assets";
-import ListDoctor from "../../components/molecules/ListDoctor";
+import List from "../../components/molecules/List";
 import { colors, fonts } from "../../utils";
 
 export default function Messages() {
@@ -11,7 +11,7 @@ export default function Messages() {
         <Text style={styles.title}>Messages</Text>
         {JSONListDoctor.data.map(item => {
           return (
-            <ListDoctor
+            <List
               key={item.id}
               profile={DummyDoctor2}
               name={item.name}

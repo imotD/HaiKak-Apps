@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Header, ListDoctor } from "../../components";
+import { Header, List } from "../../components";
 import { DummyDoctor2, JSONListDoctor } from "../../assets";
 import { colors } from "../../utils";
 
@@ -14,7 +14,7 @@ export default function ChooseDoctor({ navigation }) {
       />
       {JSONListDoctor.data.map(item => {
         return (
-          <ListDoctor
+          <List
             key={item.id}
             type="next"
             onPress={() => navigation.navigate("Chatting")}
