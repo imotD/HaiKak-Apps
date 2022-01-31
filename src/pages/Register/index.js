@@ -6,7 +6,6 @@ import { Fire } from "../../config";
 import { colors, useForm } from "../../utils";
 import { showMessage, hideMessage } from "react-native-flash-message";
 
-
 export default function Register({ navigation }) {
   const [form, setForm] = useForm({
     fullName: "",
@@ -15,67 +14,78 @@ export default function Register({ navigation }) {
     password: ""
   });
 
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const onContinue = () => {
-   
-    setLoading(true)
+    setLoading(true);
+
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
-        setLoading(false)
-        setForm('reset')
+        setLoading(false);
+        setForm("reset");
+
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email
+        };
+
+        Fire.database()
+        .ref("users/" + success.user.uid + "/")
+        .set(data);
         console.log("success", success);
       })
       .catch(error => {
-        setLoading(false)
+        console.log(error, errorMessage);
+        setLoading(false);
         var errorMessage = error.message;
         showMessage({
-          message: errorMessage,        
-          backgroundColor:colors.error,
-          color:colors.white,
-          type: "default",
+          message: errorMessage,
+          backgroundColor: colors.error,
+          color: colors.white,
+          type: "default"
         });
       });
   };
 
   return (
-   <>
-    <View style={styles.page}>
-      <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
-      <View style={styles.content}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <Input
-            label="Full Name"
-            value={form.fullName}
-            onChangeText={value => setForm("fullName", value)}
-          />
-          <Gap height={24} />
-          <Input
-            label="Job"
-            value={form.profession}
-            onChangeText={value => setForm("profession", value)}
-          />
-          <Gap height={24} />
-          <Input
-            label="Email Address"
-            value={form.email}
-            onChangeText={value => setForm("email", value)}
-          />
-          <Gap height={24} />
-          <Input
-            label="Password"
-            secureTextEntry
-            value={form.password}
-            onChangeText={value => setForm("password", value)}
-          />
-          <Gap height={40} />
-          <Button title="Continue" onPress={onContinue} />
-        </ScrollView>
+    <>
+      <View style={styles.page}>
+        <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
+        <View style={styles.content}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Input
+              label="Full Name"
+              value={form.fullName}
+              onChangeText={value => setForm("fullName", value)}
+            />
+            <Gap height={24} />
+            <Input
+              label="Job"
+              value={form.profession}
+              onChangeText={value => setForm("profession", value)}
+            />
+            <Gap height={24} />
+            <Input
+              label="Email Address"
+              value={form.email}
+              onChangeText={value => setForm("email", value)}
+            />
+            <Gap height={24} />
+            <Input
+              label="Password"
+              secureTextEntry
+              value={form.password}
+              onChangeText={value => setForm("password", value)}
+            />
+            <Gap height={40} />
+            <Button title="Continue" onPress={onContinue} />
+          </ScrollView>
+        </View>
       </View>
-    </View>
-    {loading && <Loading/>}
-   </>
+      {loading && <Loading />}
+    </>
   );
 }
 
