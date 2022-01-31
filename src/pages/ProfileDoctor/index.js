@@ -14,7 +14,10 @@ export default function ProfileDoctor({ navigation }) {
       <ProfileItems label="Tempat Praktik" value="Rumah Sakit Umum, Bandung " />
       <ProfileItems label="No. STR" value="0000116622081996" />
       <View style={styles.action}>
-        <Button title="Start Consultation" />
+        <Button
+          title="Start Consultation"
+          onPress={() => navigation.navigate("Chatting")}
+        />
       </View>
     </View>
   );

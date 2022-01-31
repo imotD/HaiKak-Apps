@@ -4,7 +4,7 @@ import { DummyDoctor7 } from "../../../assets";
 import { colors, fonts } from "../../../utils";
 import { Button } from "../../atoms";
 
-export default function DarkProfile({ title, onPress, desc, type }) {
+export default function DarkProfile({ title, onPress, desc }) {
   return (
     <View style={styles.container}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />

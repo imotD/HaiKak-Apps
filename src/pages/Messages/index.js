@@ -4,7 +4,7 @@ import { DummyDoctor2, JSONListDoctor } from "../../assets";
 import List from "../../components/molecules/List";
 import { colors, fonts } from "../../utils";
 
-export default function Messages() {
+export default function Messages({ navigation }) {
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -16,6 +16,7 @@ export default function Messages() {
               profile={DummyDoctor2}
               name={item.name}
               desc={item.desc}
+              onPress={() => navigation.navigate("Chatting")}
             />
           );
         })}

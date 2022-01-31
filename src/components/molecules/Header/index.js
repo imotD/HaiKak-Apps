@@ -6,9 +6,7 @@ import DarkProfile from "./DarkProfile";
 
 export default function Header({ title, onPress, type, desc }) {
   if (type === "dark-profile") {
-    return (
-      <DarkProfile title={title} desc={desc} onPress={onPress} type={type} />
-    );
+    return <DarkProfile title={title} desc={desc} onPress={onPress} />;
   }
   return (
     <View style={styles.container(type)}>
