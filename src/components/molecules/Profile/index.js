@@ -12,7 +12,7 @@ export default function Profile({ name, desc }) {
         <IconRemovePhoto style={styles.removePhoto} />
       </View>
       {name &&
-        <View>
+        <View style={styles.content}>
           <Text style={styles.name}>
             {name}
           </Text>
@@ -39,15 +39,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: colors.border
   },
+  content: {
+    alignItems: "center",
+    marginTop: 16
+  },
   name: {
     fontSize: 20,
     color: colors.text.primary,
-    fontFamily: fonts.primary[600],
-    marginTop: 16
+    fontFamily: fonts.primary[600]
   },
   job: {
     fontSize: 16,
-    fontFamily: fonts.primary[600],
+    fontFamily: fonts.primary.normal,
     color: colors.text.secondary,
     marginTop: 2
   },

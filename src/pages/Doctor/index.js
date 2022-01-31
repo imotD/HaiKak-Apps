@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { DummyDoctor4, JSONCategoryDoctor, JSONTopDoctor } from "../../assets";
 import {
   DoctorCategory,
   Gap,
@@ -8,7 +9,6 @@ import {
   RatedDoctor
 } from "../../components";
 import { colors, fonts } from "../../utils";
-import { JSONCategoryDoctor, JSONTopDoctor } from "../../assets";
 
 export default function Doctor({ navigation }) {
   return (
@@ -47,6 +47,8 @@ export default function Doctor({ navigation }) {
                   key={item.id}
                   name={item.name}
                   category={item.category}
+                  avatar={DummyDoctor4}
+                  onPress={() => navigation.navigate("ProfileDoctor")}
                 />
               );
             })}

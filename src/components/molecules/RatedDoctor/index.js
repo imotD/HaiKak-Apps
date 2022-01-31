@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import { DummyDoctor1, IconStar } from "../../../assets";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { IconStar } from "../../../assets";
 import { colors, fonts } from "../../../utils";
 
-export default function RatedDoctor({ name, category }) {
+export default function RatedDoctor({ name, category, onPress, avatar }) {
   return (
-    <View style={styles.container}>
-      <Image source={DummyDoctor1} style={styles.avatar} />
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      <Image source={avatar} style={styles.avatar} />
       <View style={styles.profile}>
         <Text style={styles.name}>
           {name}
@@ -22,7 +22,7 @@ export default function RatedDoctor({ name, category }) {
         <IconStar />
         <IconStar />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
