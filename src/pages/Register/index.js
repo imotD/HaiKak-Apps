@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { showMessage } from "react-native-flash-message";
 import { Button, Gap, Input } from "../../components/atoms";
 import { Header, Loading } from "../../components/molecules";
 import { Fire } from "../../config";
 import { colors, useForm } from "../../utils";
-import { showMessage, hideMessage } from "react-native-flash-message";
 
 export default function Register({ navigation }) {
   const [form, setForm] = useForm({
