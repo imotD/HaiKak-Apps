@@ -4,7 +4,7 @@ import { showMessage } from "react-native-flash-message";
 import { Button, Gap, Input } from "../../components/atoms";
 import { Header, Loading } from "../../components/molecules";
 import { Fire } from "../../config";
-import { colors, useForm } from "../../utils";
+import { colors, storeData, useForm } from "../../utils";
 
 export default function Register({ navigation }) {
   const [form, setForm] = useForm({
@@ -15,10 +15,10 @@ export default function Register({ navigation }) {
   });
 
   const [loading, setLoading] = useState(false);
-
+ 
   const onContinue = () => {
     setLoading(true);
-
+  
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
@@ -30,10 +30,12 @@ export default function Register({ navigation }) {
           profession: form.profession,
           email: form.email
         };
-
         Fire.database()
-        .ref("users/" + success.user.uid + "/")
-        .set(data);
+          .ref("users/" + success.user.uid + "/")
+          .set(data);
+
+        storeData('user', data)
+        navigation.navigate('UploadPhoto')
         console.log("success", success);
       })
       .catch(error => {
