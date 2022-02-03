@@ -4,15 +4,18 @@ import { showMessage } from "react-native-flash-message";
 import { launchImageLibrary } from "react-native-image-picker";
 import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from "../../assets";
 import { Button, Gap, Header, Link } from "../../components";
+import { Fire } from "../../config";
 import { colors, fonts } from "../../utils";
 
 export default function UploadPhoto({ navigation, route }) {
-  const { fullName, profession } = route.params;
+  const { fullName, profession, uid } = route.params;
 
+  const [photoForDB, setPhotoForDB] = useState("");
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
+
   const getImage = () => {
-    launchImageLibrary({}, respone => {
+    launchImageLibrary({ includeBase64: true }, respone => {
       if (respone.didCancel || respone.error) {
         showMessage({
           message: "Oops, sepertinya anda belum memilih foto nya?",
@@ -21,11 +24,22 @@ export default function UploadPhoto({ navigation, route }) {
           type: "default"
         });
       } else {
+        console.log("data photo", respone);
         const source = { uri: respone.assets[0].uri };
+
+        const dataPhoto = `data:${respone.assets[0].type};base64,${respone
+          .assets[0].base64}`;
+
+        setPhotoForDB(dataPhoto);
         setPhoto(source);
         setHasPhoto(true);
       }
     });
+  };
+
+  const uploadAndContinue = () => {
+    Fire.database().ref("users/" + uid + "/").update({ photo: photoForDB });
+    navigation.replace("MainApp");
   };
 
   return (
@@ -49,7 +63,7 @@ export default function UploadPhoto({ navigation, route }) {
           <Button
             disable={!hasPhoto}
             title="Upload and Continue"
-            onPress={() => navigation.replace("MainApp")}
+            onPress={uploadAndContinue}
           />
           <Gap height={30} />
           <Link
