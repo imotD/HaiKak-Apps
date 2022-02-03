@@ -5,7 +5,7 @@ import { launchImageLibrary } from "react-native-image-picker";
 import { IconAddPhoto, IconRemovePhoto, ILNullPhoto } from "../../assets";
 import { Button, Gap, Header, Link } from "../../components";
 import { Fire } from "../../config";
-import { colors, fonts } from "../../utils";
+import { colors, fonts, storeData } from "../../utils";
 
 export default function UploadPhoto({ navigation, route }) {
   const { fullName, profession, uid } = route.params;
@@ -42,6 +42,11 @@ export default function UploadPhoto({ navigation, route }) {
 
   const uploadAndContinue = () => {
     Fire.database().ref("users/" + uid + "/").update({ photo: photoForDB });
+
+    const data = route.params;
+    data.photo = photoForDB;
+    storeData("user", data);
+
     navigation.replace("MainApp");
   };
 

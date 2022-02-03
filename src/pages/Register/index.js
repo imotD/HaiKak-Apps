@@ -15,10 +15,10 @@ export default function Register({ navigation }) {
   });
 
   const [loading, setLoading] = useState(false);
- 
+
   const onContinue = () => {
     setLoading(true);
-  
+
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
@@ -28,14 +28,15 @@ export default function Register({ navigation }) {
         const data = {
           fullName: form.fullName,
           profession: form.profession,
-          email: form.email
+          email: form.email,
+          uid: success.user.uid
         };
-        Fire.database()
-          .ref("users/" + success.user.uid + "/")
-          .set(data);
 
-        storeData('user', data)
-        navigation.navigate('UploadPhoto', data)
+        Fire.database().ref("users/" + success.user.uid + "/").set(data);
+
+        storeData("user", data);
+
+        navigation.navigate("UploadPhoto", data);
         console.log("success", success);
       })
       .catch(error => {
@@ -52,7 +53,7 @@ export default function Register({ navigation }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       <View style={styles.page}>
         <Header title="Daftar Akun" onPress={() => navigation.goBack()} />
         <View style={styles.content}>
@@ -87,7 +88,7 @@ export default function Register({ navigation }) {
         </View>
       </View>
       {loading && <Loading />}
-    </>
+    </React.Fragment>
   );
 }
 
