@@ -1,13 +1,20 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ILLogo } from "../../assets/illustration";
+import { Fire } from "../../config";
 import { colors, fonts } from "../../utils";
 
 export default function Splash({ navigation }) {
   useEffect(
     () => {
       setTimeout(() => {
-        navigation.replace("GetStarted");
+        Fire.auth().onAuthStateChanged(user => {
+          if (user) {
+            navigation.replace("MainApp");
+          } else {
+            navigation.replace("GetStarted");
+          }
+        });
       }, 3000);
     },
     [navigation]
