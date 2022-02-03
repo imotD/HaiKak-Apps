@@ -1,14 +1,14 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { DummyUser, IconRemovePhoto } from "../../../assets";
+import { IconRemovePhoto } from "../../../assets";
 import { colors } from "../../../utils/colors";
 import { fonts } from "../../../utils/fonts";
 
-export default function Profile({ name, desc, isRemove }) {
+export default function Profile({ photo, name, desc, isRemove }) {
   return (
     <View style={styles.container}>
       <View style={styles.border}>
-        <Image source={DummyUser} style={styles.avatar} />
+        <Image source={photo} style={styles.avatar} />
         {isRemove && <IconRemovePhoto style={styles.removePhoto} />}
       </View>
       {name &&
