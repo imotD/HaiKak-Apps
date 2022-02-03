@@ -15,26 +15,29 @@ export default function UploadPhoto({ navigation, route }) {
   const [photo, setPhoto] = useState(ILNullPhoto);
 
   const getImage = () => {
-    launchImageLibrary({ includeBase64: true }, respone => {
-      if (respone.didCancel || respone.error) {
-        showMessage({
-          message: "Oops, sepertinya anda belum memilih foto nya?",
-          backgroundColor: colors.error,
-          color: colors.white,
-          type: "default"
-        });
-      } else {
-        console.log("data photo", respone);
-        const source = { uri: respone.assets[0].uri };
+    launchImageLibrary(
+      { quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true },
+      respone => {
+        if (respone.didCancel || respone.error) {
+          showMessage({
+            message: "Oops, sepertinya anda belum memilih foto nya?",
+            backgroundColor: colors.error,
+            color: colors.white,
+            type: "default"
+          });
+        } else {
+          console.log("data photo", respone);
+          const source = { uri: respone.assets[0].uri };
 
-        const dataPhoto = `data:${respone.assets[0].type};base64,${respone
-          .assets[0].base64}`;
+          const dataPhoto = `data:${respone.assets[0].type};base64,${respone
+            .assets[0].base64}`;
 
-        setPhotoForDB(dataPhoto);
-        setPhoto(source);
-        setHasPhoto(true);
+          setPhotoForDB(dataPhoto);
+          setPhoto(source);
+          setHasPhoto(true);
+        }
       }
-    });
+    );
   };
 
   const uploadAndContinue = () => {
