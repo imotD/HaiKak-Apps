@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { showMessage } from "react-native-flash-message";
+import { launchImageLibrary } from "react-native-image-picker";
 import { ILNullPhoto } from "../../assets";
 import { Button, Gap, Header, Input, Profile } from "../../components";
 import { Fire } from "../../config";
-import { colors, getData } from "../../utils";
+import { colors, getData, storeData } from "../../utils";
 
 export default function UpdateProfile({ navigation }) {
   const [profile, setProfile] = useState({
     fullName: "",
     profession: "",
-    email: "",
-    photo: ILNullPhoto
+    email: ""
   });
 
+  const [photo, setPhoto] = useState(ILNullPhoto);
+  const [photoForDB, setPhotoForDB] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     getData("user").then(res => {
       const data = res;
-      data.photo = { uri: res.photo };
+      setPhoto = { uri: res.photo };
       setProfile(data);
     });
   }, []);
@@ -33,13 +35,16 @@ export default function UpdateProfile({ navigation }) {
 
   const updateProfile = () => {
     const data = profile;
-    data.photo = profile.photo.uri;
+    data.photo = photoForDB;
+
+    console.log("data profile", data);
 
     Fire.database()
       .ref(`user/${profile.uid}/`)
-      .update(profile)
-      .then(res => {
-        console.log("sukses", res);
+      .update(data)
+      .then(() => {
+        console.log("sukses", data);
+        storeData("user", data);
         // navigation.goBack("UserProfile")
       })
       .catch(err => {
@@ -52,12 +57,37 @@ export default function UpdateProfile({ navigation }) {
       });
   };
 
+  const getImage = () => {
+    launchImageLibrary(
+      { quality: 0.5, maxWidth: 200, maxHeight: 200, includeBase64: true },
+      respone => {
+        if (respone.didCancel || respone.error) {
+          showMessage({
+            message: "Oops, sepertinya anda belum memilih foto nya?",
+            backgroundColor: colors.error,
+            color: colors.white,
+            type: "default"
+          });
+        } else {
+          console.log("data photo", respone);
+          const source = { uri: respone.assets[0].uri };
+
+          const dataPhoto = `data:${respone.assets[0].type};base64,${respone
+            .assets[0].base64}`;
+
+          setPhotoForDB(dataPhoto);
+          setPhoto(source);
+        }
+      }
+    );
+  };
+
   return (
     <View style={styles.page}>
       <Header onPress={() => navigation.goBack()} title="Update Profile" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <Profile photo={profile.photo} isRemove />
+          <Profile photo={photo} isRemove onPress={getImage} />
           <Gap height={26} />
           <Input
             label="Full Name"
