@@ -9,8 +9,8 @@ import { colors, fonts, storeData, useForm } from "../../utils";
 
 export default function Login({ navigation }) {
   const [form, setForm] = useForm({
-    email: "tommy@gmail.com",
-    password: "1234567890"
+    email: "",
+    password: ""
   });
 
   const [loading, setLoading] = useState(false);

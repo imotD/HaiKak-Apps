@@ -7,15 +7,15 @@ import { colors, fonts } from "../../utils";
 export default function Splash({ navigation }) {
   useEffect(
     () => {
-      setTimeout(() => {
-        Fire.auth().onAuthStateChanged(user => {
-          if (user) {
-            navigation.replace("MainApp");
-          } else {
+      Fire.auth().onAuthStateChanged(user => {
+        if (user) {
+          navigation.replace("MainApp");
+        } else {
+          setTimeout(() => {
             navigation.replace("GetStarted");
-          }
-        });
-      }, 3000);
+          }, 3000);
+        }
+      });
     },
     [navigation]
   );
