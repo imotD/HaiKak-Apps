@@ -17,18 +17,19 @@ export default function Login({ navigation }) {
 
   const onLogin = () => {
     setLoading(true);
+
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
       .then(res => {
         setLoading(false);
-        // setForm("reset");
+        setForm("reset");
         Fire.database()
-          .ref(`user/${res.user.uid}/`)
+          .ref(`users/${res.user.uid}/`)
           .once("value")
           .then(resDB => {
             console.log("data user", resDB.val());
             if (resDB.val()) {
-              storeData("user", resDB.val());
+              storeData("users", resDB.val());
               navigation.replace("MainApp");
             }
           });

@@ -32,11 +32,11 @@ export default function Register({ navigation }) {
           uid: success.user.uid
         };
 
-        Fire.database().ref("users/" + success.user.uid + "/").set(data);
+        Fire.database().ref(`users/"${success.user.uid}/`).set(data);
 
-        storeData("user", data);
+        storeData("users", data);
 
-        navigation.navigate("UploadPhoto", data);
+        navigation.replace("UploadPhoto", data);
         console.log("success", success);
       })
       .catch(error => {

@@ -19,7 +19,7 @@ export default function UpdateProfile({ navigation }) {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    getData("user").then(res => {
+    getData("users").then(res => {
       const data = res;
       setPhoto = { uri: res.photo };
       setProfile(data);
@@ -45,11 +45,9 @@ export default function UpdateProfile({ navigation }) {
       } else {
         updatePassword();
         updateProfileData();
-        navigation.replace("MainApp");
       }
     } else {
       updateProfileData();
-      navigation.replace("MainApp");
     }
   };
 
@@ -73,11 +71,12 @@ export default function UpdateProfile({ navigation }) {
     data.photo = photoForDB;
 
     Fire.database()
-      .ref(`user/${profile.uid}/`)
+      .ref(`users/${profile.uid}/`)
       .update(data)
       .then(() => {
         console.log("sukses", data);
-        storeData("user", data);
+        storeData("users", data);
+        navigation.replace("MainApp");
       })
       .catch(err => {
         showMessage({

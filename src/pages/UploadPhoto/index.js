@@ -45,7 +45,7 @@ export default function UploadPhoto({ navigation, route }) {
 
     const data = route.params;
     data.photo = photoForDB;
-    storeData("user", data);
+    storeData("users", data);
 
     navigation.replace("MainApp");
   };

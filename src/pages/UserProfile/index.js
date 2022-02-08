@@ -14,7 +14,7 @@ export default function UserProfile({ navigation }) {
   });
 
   useEffect(() => {
-    getData("user").then(res => {
+    getData("users").then(res => {
       const data = res;
       data.photo = { uri: res.photo };
       setProfile(data);

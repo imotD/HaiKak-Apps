@@ -7,6 +7,7 @@
     "share": "npx react-native run-android --variant=release",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "reset": "npx react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint ."
   },
